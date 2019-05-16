@@ -4,7 +4,6 @@ if(isset($_GET['action']) && $_GET['action'] == "connexion"){
     $c->Connexion();
 }
 ?>
-<div class="wallpaper"></div>
 <section class="container">
     <div class="row">
         <div class="col-12">

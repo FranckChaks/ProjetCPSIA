@@ -1,7 +1,12 @@
-<section class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-12">
-            
-        </div>
+           <?php menu();?>
+            <div class="col-10">
+                <div class="front-accueil">
+                </div>
+                <div class="front-accueil">
+                </div>
+            </div>
     </div>
-</section>
+</div>
+

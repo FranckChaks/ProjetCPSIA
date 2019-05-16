@@ -12,7 +12,7 @@
         <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
     </head>
     <body>
-
+    <div class="wallpaper"></div>
 <?php echo $content;?>
     </body>
 </html>
