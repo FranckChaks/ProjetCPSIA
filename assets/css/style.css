@@ -1,0 +1,35 @@
+/*Wallpaper page connexion*/
+.wallpaper{
+    height:100%;
+    width:100%;
+    position: fixed;
+    background:url("wallpaper.jpg") top;
+    filter: brightness(0.3);
+    background-attachment: fixed !important;
+    background-size: cover !important;
+}
+
+/*Page Connexion*/
+.login-block{
+    background: rgba(255, 255, 255, 0.61);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    margin: auto;
+    margin-top: 10vh;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    /*border-radius: 5px;*/
+    border: 1px solid #b4b4b4;
+
+}
+
+div form label{
+    font-weight: bold;
+}
+
+.title-login{
+    font-size: 60px;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    font-family: Calibri;
+    margin-top: 20vh;
+}

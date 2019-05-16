@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require "core/functions.php";
+//    require "core/functions.php";
     require "model/bdd.php";
 
     define('WEBROOT', dirname(__FILE__));
