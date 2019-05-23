@@ -3,6 +3,7 @@
 
 //    require "core/functions.php";
     require "model/bdd.php";
+    include "config/config-genos.php";
 
     define('WEBROOT', dirname(__FILE__));
     define('BASE_URL', dirname($_SERVER['SCRIPT_NAME']));
@@ -26,6 +27,7 @@
             }
             else
             {
+              require "view/menu.php";
               $page = $_GET['p'];
             }
           }
