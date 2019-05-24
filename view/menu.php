@@ -9,9 +9,10 @@
                 <nav>
                     <ul>
                         <li>Ordre, design & noms non définitif</li>
-                        <li class="onglet-menu-actif"><a href="produit" class="href">Produits</a></li>
-                        <li class="onglet-menu"><a href="accueil" class="href">Utilisateurs</a></li>
+                        <li class="onglet-menu-actif"><a href="accueil" class="href">Clients</a></li>
+                        <li class="onglet-menu"><a href="produit" class="href">Produits</a></li>
                         <li class="onglet-menu"><a href="panier" class="href">Mon panier</a></li>
+                        <li class="onglet-menu"><a href="categorie" class="href">Gestion Categorie</a></li>
                         <li class="onglet-menu">Onglet 4</li>
                         <li class="onglet-menu">Onglet 5</li>
                     </ul>
