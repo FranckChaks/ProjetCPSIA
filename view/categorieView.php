@@ -5,6 +5,11 @@
             <h1 style="color: white" class="mt-2">Gestion des catégories</h1>
             <section class="front-accueil active">
                 <div class="col-12">
+                    <form action="#" method="post">
+                        <input type="text" name="libelle_c" placeholder="Ajouter une nouvelle catégorie...">
+                        <input type="submit" name="addCategorie">
+                    </form>
+
                     <button class="btn btn-primary float-right btn-categorie mb-1"><i class="fa fa-plus"></i> Ajouter une categorie</button>
                     <table class="table table-bordered">
                         <thead>
@@ -14,18 +19,16 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php $i = 0; while($i < 10) {?> <!--- Test d'affichage --->
+                        <?php foreach($liste_categorie as $k=>$v){  //On peut remplacer $liste_categorie par categorie::getListe()?>
                             <tr>
-                                <td>Alimentaires</td>
+                                <td><?=$v['libelle_c'];?></td>
                                 <td><span class="badge badge-pill badge-info">Modifier</span>  <span class="badge badge-pill badge-danger">Supprimer</span></td>
                             </tr>
-                            <?php $i++; } ?>
+                        <?php } ?>
                         </tbody>
                     </table>
-                    <!--                        </div>-->
                 </div>
             </section>
         </div>
     </div>
 </div>
-
