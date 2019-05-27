@@ -1,3 +1,9 @@
+/*design texte*/
+
+.txt-shdw{
+    text-shadow: 1px 1px 2px black;
+}
+
 /*Wallpaper page connexion*/
 .wallpaper{
     height:100%;
@@ -35,82 +41,203 @@ div form label{
 }
 /*Page Menu*/
 
-.onglet-menu{
-    font-size: 25px;
-    font-weight: bold;
-    color: deepskyblue;
-    text-shadow: 1px 1px 2px blue;
-    transition: 0.3s;
-    border-bottom: 1px solid rgba(70, 70, 70, 0.64);
-    padding-bottom: 10px;
-}
-
-.onglet-menu:hover{
-    font-size: 27px;
-}
-
-.onglet-menu-actif:hover{
-    font-size: 27px;
-}
-
-.onglet-menu-actif{
-    font-size: 25px;
-    padding-top: 5px;
-    font-weight: bold;
-    color: white !important;
-    text-shadow: 1px 1px 2px black;
-    transition: 0.3s;
-    border-bottom: 1px solid rgba(70, 70, 70, 0.64);
-    padding-bottom: 10px;
-    background:deepskyblue !important;
-}
-
 .href{
     text-decoration: none !important;
+    color: black;
 }
 
-.onglet-menu-actif .href{
-    color: white !important;
+.sidebar {
+    margin: 0;
+    padding: 0;
+    width: 180px;
+    /*background-color: #f1f1f1;*/
+    position: fixed;
+    height: 100%;
+    overflow: auto;
 }
+
+.sidebar a {
+    display: block;
+    color: black;
+    padding: 16px;
+    text-decoration: none;
+    transition:0.5s;
+}
+
+.sidebar a.active {
+    /*background-color: #21177D;*/
+    color: black;
+    font-weight:bold;
+    text-decoration: none;
+}
+
+.sidebar a:hover:not(.active) {
+    text-decoration:none;
+    color: saddlebrown;
+}
+
+.mnu-onglet {
+    display: inline-block;
+    color: #000;
+    text-decoration: none;
+}
+
+.mnu-onglet::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: width .3s;
+}
+
+.mnu-onglet:hover::after {
+    width: 100%;
+}
+
+.fa-shopping-cart:hover{
+    color: saddlebrown;
+}
+
+div.content {
+    margin-left: 180px;
+    padding: 1px;
+    /*height: 1500px;*/
+    background: white;
+    margin-bottom: 20px;
+}
+
+@media screen and (max-width: 700px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {float: left;}
+    div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+}
+
+
 /*Page Accueil*/
 
-.menu-accueil{
-    height: 100vh;
-    background: white;
+.front-bloc-accueil{
+    padding: 20px;
+    background: url('wallpaper.jpg') no-repeat 80% 30%;
+    height: 300px;
+    width: 100%;
+    margin-top: 50px;
+    text-align: right;
+    padding-top: 180px;
+}
+
+.title-accueil{
+    font-family: 'Century Gothic';
+    font-size: 45px;
+    color: white;
+    text-shadow: 1px 1px 2px black
+}
+
+.under-title-accueil{
+    font-family: 'Edwardian Script ITC';
+    font-size: 70px;
+    margin-top: -20px
+}
+
+
+.bloc-product{
+    height: 300px;
+    width: 100%;
+    /*background: black;*/
+    transition: 0.3s;
+}
+
+/*.bloc-product:hover{*/
+    /*box-shadow: 0 1px 2px rgba(0,0,0,0.16), 0 1px 2px rgba(0,0,0,0.23);*/
+    /*border-radius: 10px;*/
+/*}*/
+
+.detail-product{
     text-align: center;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    padding: 2px !important;;
 }
 
-.front-accueil{
-    /*margin-left: 20px;*/
-    height: 600px;
-    background: white;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+.btn-accueil{
+    background: none;
+    /*border:none;*/
+    border: 2px solid black;
+    font-weight: bold;
+    transition: 0.5s;
+}
+
+.btn-accueil:hover{
+    color: white;
+    background: black;
+}
+
+.front-second-accueil-left{
+    width: 100%;
+    height: 400px;
+    background: url("shop.jpg") no-repeat center;
+    background-size: 100% 100%;
     margin-top: 20px;
+    padding: 20px;
+    color: white;
 }
 
-.accueil-front{
-    background: white;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-    /*padding: 20px;*/
-    /*margin-top: 20px;*/
+.easy-shopping{
+    margin-top: 200px;
+    text-align: right;
 }
 
-nav ul li{
-    list-style: none;
-    margin-top: 20px;
+
+
+.front-accroche{
+    font-size: 20px;
 }
-nav ul{
+
+.start-shopping{
+    margin: auto;
+    margin-top: 130px;
+    width: 150px;
+    height: 150px;
+    /*background: black;*/
+    border: 5px solid black;
     text-align: center;
-    padding: 0;
+    font-size: 80px;
+    padding-top: 30px;
+    font-weight: bold;
+    transition: 0.4s;
+}
+
+.start-shopping:hover{
+    background: black;
+    color: white;
+}
+
+.btn-produit-accueil{
+    border: 5px solid black;
+    width: 150px;
+    font-weight: bold;
+    background: none;
+    transition: 0.4s;
+}
+
+.btn-produit-accueil:hover{
+    background: black;
+    color: white;
 }
 
 /*Page Produit*/
 
 .categorie-produit{
     height: 40px;
-    border-radius: 6px;
+    border-radius: 3px;
     width: 100%;
     background: white;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
@@ -135,11 +262,14 @@ nav ul{
 }
 
 .nav-pills .nav-link {
-    border-radius: 6px !important;
+    border-radius: 0px !important;
 }
 
 .btn-categorie{
     height: 35px !important;
     margin-top: 1px;
-    margin-left: 48%; /* TODO --> METTRE EN FLOAT RIGHT*/
+    margin-left: 100px; /* TODO --> METTRE EN FLOAT RIGHT*/
 }
+
+
+
