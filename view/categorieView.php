@@ -1,10 +1,10 @@
-<div class="container-fluid">
-    <div class="row">
-        <?php menu();?>
-        <div class="col-10">
+<?php menu();?>
+        <div class="content">
             <h1 style="color: white" class="mt-2">Gestion des catégories</h1>
             <section class="front-accueil active">
                 <div class="col-12">
+
+
                     <form action="#" method="post">
                         <input type="text" name="libelle_c" placeholder="Ajouter une nouvelle catégorie...">
                         <input type="submit" name="addCategorie">
@@ -30,5 +30,3 @@
                 </div>
             </section>
         </div>
-    </div>
-</div>
