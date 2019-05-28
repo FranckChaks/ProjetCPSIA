@@ -1,28 +1,32 @@
 <?php
+include "produit.php";
 require "model/ficheProduitModel.php";
 
-class ficheProduit
+class ficheProduit extends produit
 {
-    use genos;
-
-
-    public $id_p;
-    public $libelle_p;
-    public $description_p;
-    public $prix_p;
-    public $img_p;
-    public $id_c;
+    use Genos;
 
     public function __construct(){
-        $this->id_p = 0;
-        $this->libelle_p = "";
-        $this->description_p = "";
-        $this->prix_p = "";
-        $this->img_p = "";
-        $this->id_c = 0;
+        parent::__construct();
+    }
+
+    public function getFiche($id){      //Substitut de la méthode Load() de genos -> j'arrive pas à la faire marcher
+        $p = new produit;
+        $p->id = $id;
+        $req = getFicheProduit($id);
+        $ligne = $req->fetch(PDO::FETCH_ASSOC);
+        return $ligne;
     }
 }
 
 
+$p     = new ficheProduit();
+$id = (int)$_GET['id'];
+$fiche = $p->getFiche($id);
+
+$libelle = $fiche['libelle_p'];
+$desc = $fiche['description_p'];
+$prix = $fiche['prix_p'];
+$img = $fiche['img_p'];
 
 require "view/ficheProduitView.php";
