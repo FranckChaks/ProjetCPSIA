@@ -36,4 +36,4 @@ if(isset($_POST['addCategorie'])){
 }
 
 
-require "view/categorieView.php";
+//require "view/categorieView.php";
