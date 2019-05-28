@@ -17,7 +17,7 @@ class produit
 
     public function __construct()
     {
-        $this ->primary_key = "id_p" ;
+        $this->primary_key = "id_p" ;
         $this->id = 0;
         $this->libelle_p = "";
         $this->description_p = "";
@@ -49,4 +49,7 @@ foreach(categorie::getList() as $k=>$v){
     $listeProduitCat[] = $p->getProductByCategory($v['id_c']);
 }
 
-require "view/produitView.php";
+
+if(!isset($_GET['id'])) {
+    include "view/produitView.php";
+}
