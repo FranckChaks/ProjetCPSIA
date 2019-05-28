@@ -25,7 +25,7 @@
                 <div class="row mb-5">
                 <?php foreach(produit::getAllProduct() as $k=>$v) { ?>
                     <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
-                        <a href="ficheProduit" class="href">
+                        <a href="ficheProduit/<?=$v['id_p'];?>" class="href">
                             <div class=" card-1 select-produit">
                                 <img src="assets/css/<?=$v['img_p'];?>" height="80%" width="100%">
                                 <p style=" padding-bottom: 10px">
@@ -45,20 +45,21 @@
                 <div class="row mb-5">
                     <?php foreach($listeProduitCat[$v['id_c']-1] as $key=>$val){  ?>
                         <div class="col-lg-3 col-md-4 col-sm-6 mt-5">
-                            <div class="select-produit card-1">
-                                <img src="assets/css/<?=$val['img_p'];?>" height="80%" width="100%">
-                                <p style=" padding-bottom: 10px">
-                                    <b><?=$val['libelle_p'];?></b>
-                                    <br>
-                                    <small><?=$val['prix_p'];?>€</small>
-                                </p>
-                            </div>
+                            <a href="ficheProduit/<?=$val['id_p'];?>" class="href">
+                                <div class="select-produit card-1">
+                                    <img src="assets/css/<?=$val['img_p'];?>" height="80%" width="100%">
+                                    <p style=" padding-bottom: 10px">
+                                        <b><?=$val['libelle_p'];?></b>
+                                        <br>
+                                        <small><?=$val['prix_p'];?>€</small>
+                                    </p>
+                                </div>
+                            </a>
                         </div>
                     <?php } ?>
                 </div>
             </div>
             <?php } ?>
         </div>
-
     </div>
 </div>
