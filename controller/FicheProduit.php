@@ -14,8 +14,7 @@ class ficheProduit extends produit
         $p = new produit;
         $p->id = $id;
         $req = getFicheProduit($id);
-        $ligne = $req->fetch(PDO::FETCH_ASSOC);
-        return $ligne;
+        return $req;
     }
 }
 
