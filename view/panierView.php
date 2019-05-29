@@ -17,25 +17,29 @@
                 </tr>
                 </thead>
                 <tbody>
-                <?php $i = 1; while($i < 5){ ?>
+                <?php foreach($panier as $k=>$v){ ?>
                 <tr>
                     <td style="width: 76px">
-                        <img src="assets/css/food.png" height="75px" width="75px">
+                        <img src="assets/css/<?=$v['img_p'];?>" height="75px" width="75px">
                     </td>
-                    <td><b>Jeans</b></td>
-                    <td>30€</td>
-                    <td>2</td>
-                    <td>60€</td>
-                    <td><i class="fa fa-trash"></i> </td>
+                    <td><b><?=$v['libelle_p'];?></b></td>
+                    <td><?=$v['prix_p'];?>€</td>
+                    <td><?=$v['quantite'];?></td>
+                    <td><?=$v['prix_p']*$v['quantite'];?>€</td>
+                    <td>
+                        <form action="#" method="post">
+                        <a href="<?=BASE_URL;?>/panier?delete&id=<?=$v['id_p'];?>" <i class="fa fa-trash"></i>
+                        </form>
+                    </td>
                 </tr>
-                <?php $i++; } ?>
+                <?php } ?>
                 <tr>
                     <td><h3>Total</h3></td>
                     <td></td>
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><h3>240€</h3></td>
+                    <td><h3><?=$total;?><small>€</small></h3></td>
                 </tr>
                 </tbody>
             </table>
