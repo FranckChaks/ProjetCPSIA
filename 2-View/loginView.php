@@ -39,6 +39,7 @@ if (isset($_GET['action']) && $_GET['action'] == "connexion") {
             </div>
         </div>
     </div>
+    <?=URL_HOME?>
 </section>
 
 <!-- Optional JavaScript -->

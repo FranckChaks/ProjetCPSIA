@@ -17,11 +17,12 @@ class connexion
         $this->login = "";
         $this->mdp = "";
         $this->lvl = 0;
-        $this->pageConnexion = "./2-View/loginView.php";
+        $this->pageConnexion = URL_HOME."/2-View/loginView.php";
     }
 
     public function verifConnexion()
     {
+        echo "Deconnexion";
         if (!isset($_SESSION[$this->nom]) || $_SESSION[$this->nom] != true)
         {
             $page = $this->get_page();
