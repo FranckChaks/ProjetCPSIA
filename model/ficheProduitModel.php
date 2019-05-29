@@ -7,4 +7,8 @@
         $req->execute();
         return $req->fetch();
     }
-?>
+
+    function addProduct($quantite, $id_p, $id_u){
+        $req = "INSERT INTO panier(quantite, id_p, id_u) VALUES (".$quantite.", ".$id_p.", ".$id_u.")";
+        return $req;
+    }
