@@ -27,6 +27,10 @@
 	define("DATABASE_USER",$DATABASE_USER);
 	define("DATABASE_PSWD",$DATABASE_PSWD);
 
-    $URL_HOME = "http://localhost/ProjetCPSIA/";
+    $URL_HOME = "http://localhost/efficom/TP_POO/ProjetCPSIA/";
     define("URL_HOME", $URL_HOME);
+
+var_dump($_SESSION);
 	include(__DIR__."/genos.php");
+	//include(__DIR__."/config.php");
+    include (__DIR__."/../1-Class/connexion.class.php");

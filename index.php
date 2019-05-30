@@ -1,15 +1,6 @@
 <?php
-    include ('0-config/config.php');
+    include ("0-config/config.php");
 
-    $c = new connexion();
-
-    if (isset($_GET['action']))
-    {
-        if ($_GET['action'] == "logout")
-        {
-            $c->deconnexion();
-        }
-    }
 ?>
 
 <!doctype html >
@@ -30,7 +21,7 @@
           <a href="index.php?action=logout"><button class="btn-danger">Deconnexion</button></a>
           <br/>
           <h2>Voici la page accueil</h2>
-          <?=$_SESSION['id']."   +  ".$_SESSION['login']." ! "?>
+          <?php var_dump($_SESSION);?>
       </div>
   </section>
 

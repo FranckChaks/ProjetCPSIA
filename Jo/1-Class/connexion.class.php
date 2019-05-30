@@ -8,18 +8,18 @@ class connexion
     public function __construct()
     {
         $this->deconnexion();
-        $this->nom = "auth";
-        $this->pageConnexion = "2-View/loginView.php";
+        $this->nom = "connecte";
+        $this->pageConnexion = "2-Controller/connexion.php";
     }
 
     public function verifConnexion()
     {
-        //if (!isset($_SESSION[$this->nom]) || $_SESSION[$this->nom] !== true)
-        //{
+        if (!isset($_SESSION[$this->nom]) || $_SESSION[$this->nom] !== true)
+        {
             $page = $this->get_page();
             if ($page != $this->pageConnexion)
                 header("location:" .URL_HOME.$this->pageConnexion);
-        //}
+        }
     }
 
     public function get_page()
@@ -37,7 +37,8 @@ class connexion
         $login = $_POST['login'];
         $mdp = md5($_POST['mdp']);
 
-        $bdd = new PDO("mysql:host=".PARAM_hote.";port=".PARAM_port.";dbname=".PARAM_nom_bdd.";charset=utf8", PARAM_utilisateur, PARAM_mdp);
+        $bdd = new PDO("mysql:host=".PARAM_hote.";port=".PARAM_port.";dbname="
+            .PARAM_nom_bdd.";charset=utf8", PARAM_utilisateur, PARAM_mdp);
 
         $req = "SELECT * FROM user WHERE login = :login AND mdp = :mdp LIMIT 0,1";
         $bind = array();
@@ -54,13 +55,14 @@ class connexion
             $_SESSION[$this->nom] = true;
             $_SESSION['login'] = $login;
             $_SESSION['id'] = $ligne['id_u'];
+            var_dump($_SESSION);
             header("location:../index.php");
         }
     }
 
     public function deconnexion()
     {
-        if (isset($_GET['action']) && $_GET['action'] == 'logout')
+        if (isset($_GET['action']) && $_GET['action'] == 'deconnexion')
         {
             foreach($_SESSION as $key => $v)
             {
