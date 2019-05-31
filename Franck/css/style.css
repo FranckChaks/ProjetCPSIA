@@ -41,6 +41,16 @@ section div a:hover{
     color: black;
 }
 
+.href{
+    text-decoration: none;
+    color: black;
+}
+
+.href:hover{
+    text-decoration: none;
+    color: black;
+}
+
 /*-------Page produit--------*/
 
 .bloc-category2{
@@ -49,4 +59,9 @@ section div a:hover{
     border-radius: 5px;
     padding-top: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.add-product{
+    background: none;
+    border: none;
 }
