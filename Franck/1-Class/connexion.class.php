@@ -38,8 +38,7 @@ class connexion
 //        $mdp = md5($_POST['mdp']);
         $mdp = sha1($_POST['mdp']);
 
-        $bdd = new PDO("mysql:host=".PARAM_hote.";port=".PARAM_port.";dbname="
-            .PARAM_nom_bdd.";charset=utf8", PARAM_utilisateur, PARAM_mdp);
+        global $bdd;
 
         $req = "SELECT * FROM user WHERE login = :login AND mdp = :mdp LIMIT 0,1";
         $bind = array();
