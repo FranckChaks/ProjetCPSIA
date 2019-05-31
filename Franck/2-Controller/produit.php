@@ -1,29 +1,40 @@
 <?php
-    if (isset($_GET["action"]) && $_GET["action"] == 1)
+
+
+    if (isset($_POST["add"]))       //Ajout au panier
     {
-        $p = new produit;
+        $pa = new panier;
+        $pa->id_p = $_POST["add"];
+        $pa->id_u = $_POST["id_u"];
+        $pa->quantite = $_POST['quantite'];
+        $pa->ajouter();
 
-        $p->nom = $_POST["nom"];
-        $p->prenom = $_POST["prenom"];
-        $p->age = $_POST["age"];
-
-        $p->ajouter();
-        header("location: index.php");
+        header("refresh:0");
+        exit;
     }
-    if (isset($_GET["action"]) && $_GET["action"] == 2)
+
+    if (isset($_GET["action"]) && $_GET["action"] == 2)     //Modifier
     {
         $p = new produit;
         $p->id_p = (int)$_GET['id'];
         $p->charger();
+        $img_p = $p->img_p;
+        $nom_p = $p->libelle_p;
+        $prix_p = $p->prix_p;
 
-//        $p->nom = $_POST["nom"];
-//        $p->prenom = $_POST["prenom"];
-//        $p->age = $_POST["age"];
+        if(isset($_POST['submit'])){
+            $p->libelle_p = $_POST['libelle_p'];
+            $p->prix_p = $_POST['prix_p'];
 
-//        $p->modifier();
-//        header("location: index.php");
+            if(!empty($_POST['img_p'])) $p->img_p = $_POST['img_p'];
+            else $p->img_p = $img_p;
+
+            $id_c = $p->id_c;
+
+            $p->Modifier();
+        }
     }
-    if (isset($_GET["action"]) && $_GET["action"] == 3)
+    if (isset($_GET["action"]) && $_GET["action"] == 3)     //Supprimer
     {
         $e = new eleve();
         $e->id = $_GET['id'];
@@ -35,7 +46,7 @@
         header("location: index.php");
     }
 
-    if(isset($_GET['id'])){
+    if(isset($_GET['id'])){                     //Affichage des produits selon la categorie
         $id = (int)$_GET['id'];
         $p = new produit;
         $produit = $p->getProduitByCategory($id);
@@ -48,6 +59,12 @@
 
 //$c = new categorie();
 //$c->getCategories();
+
+$u = new utilisateur();
+$user = $u->getNomPrenom();
+$id_user_selected = $u->getIDSelectedUser();
+
+//$alluser = $u->getOtherUsers();
 
 Head("Produit");
 require "4-View/produitView.php";
