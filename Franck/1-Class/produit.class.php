@@ -25,41 +25,45 @@ class produit
         $this->id_c = 0;
     }
 
-//    public function getProduit($id)
-//    {
-//        global $bdd;
-//
-//        $req = "SELECT * FROM produit WHERE id = :id";
-//
-//        $bind = array();
-//        $bind['id'] = $id;
-//
-//        $res = $bdd->prepare($req);
-//        $res->execute($bind);
-//
-//        $ligne = $res->fetch(PDO::FETCH_ASSOC);
-//        return $ligne;
-//    }
-
     public function charger()
     {
         global $bdd;
 
-        $req = "SELECT * FROM produit WHERE id = ".$this->id_p;
+        $req = $bdd->prepare("SELECT * FROM produit WHERE id_p = ".$this->id_p);
+        $req->bindValue('id_c', $this->id_p, PDO::PARAM_INT);
+        $req->execute();
+        $ligne = $req->fetch(PDO::FETCH_ASSOC);
 
-        $bind = array();
-        $bind['id'] = $this->id_p;
+        $this->libelle_p      = $ligne['libelle_p'];
+        $this->description_p  = $ligne['description_p'];
+        $this->prix_p         = $ligne['prix_p'];
+        $this->img_p          = $ligne['img_p'];
+    }
 
-        $res = $bdd->prepare($req);
-        $res->execute($bind);
+    public function Modifier(){
+        global $bdd;
+        $req = $bdd->prepare("UPDATE produit SET libelle_p  = :libelle_p,
+                                                           prix_p     = :prix_p,
+                                                           img_p      = :img_p
+                                                           WHERE id_p = ".$this->id_p);
+        $req->bindValue(':libelle_p', $this->libelle_p, PDO::PARAM_STR);
+        $req->bindValue(':prix_p',    $this->prix_p,    PDO::PARAM_STR);
+        $req->bindValue(':img_p',     $this->img_p,     PDO::PARAM_STR);
+        $req->execute();
+        $req->fetch(PDO::FETCH_ASSOC);
 
-        $ligne = $res->fetch(PDO::FETCH_ASSOC);
+        header("location".URL_HOME."/produit?action=2&id=".$this->id_p);
 
-        $this->libelle_p = $ligne['libelle_p'];
-        $this->desc_p    = $ligne['desc_p'];
-        $this->prix_p    = $ligne['prix_p'];
-        $this->img_p     = $ligne['img_p'];
-        $this->id_c      = $ligne['id_c'];
+    }
+
+    public static function getProduit()
+    {
+        global $bdd;
+
+        $req = $bdd->prepare("SELECT * FROM produit ORDER BY libelle_p");
+        $req->execute();
+        $ligne = $req->fetchAll(PDO::FETCH_ASSOC);
+        return $ligne;
     }
 
     public function getProduitByCategory($id){
