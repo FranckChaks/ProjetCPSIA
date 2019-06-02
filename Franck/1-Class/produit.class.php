@@ -10,16 +10,15 @@ class produit
 {
     public $id_p;
     public $libelle_p;
-    public $desc_p;
+    public $description_p;
     public $prix_p;
     public $img_p;
     public $id_c;
 
     public function __construct()
     {
-        $this->id_p = 0;
         $this->libelle_p = "";
-        $this->desc_p = "";
+        $this->description_p = "";
         $this->prix_p = 0;
         $this->img_p = "";
         $this->id_c = 0;
@@ -38,6 +37,19 @@ class produit
         $this->description_p  = $ligne['description_p'];
         $this->prix_p         = $ligne['prix_p'];
         $this->img_p          = $ligne['img_p'];
+    }
+
+    public function ajouter(){
+        global $bdd;
+        $req = $bdd->prepare('INSERT INTO produit(libelle_p, description_p,  prix_p, img_p, id_c) VALUES (:libelle_p, :description_p,  :prix_p, :img_p, :id_c)');
+        $req->bindValue(':libelle_p', $this->libelle_p, PDO::PARAM_STR);
+        $req->bindValue(':description_p', $this->description_p, PDO::PARAM_STR);
+        $req->bindValue(':prix_p', $this->prix_p, PDO::PARAM_STR);
+        $req->bindValue(':img_p', $this->img_p, PDO::PARAM_STR);
+        $req->bindValue(':id_c', $this->id_c, PDO::PARAM_INT);
+        $req->execute();
+
+        return $req->fetch(PDO::FETCH_ASSOC);
     }
 
     public function Modifier(){
@@ -78,7 +90,14 @@ class produit
         $res->execute($bind);
 
         return $res->fetchAll(PDO::FETCH_ASSOC);
+    }
 
+    public function supprimer(){
+        global $bdd;
+        $req = $bdd->prepare("DELETE FROM produit WHERE id_p = :id_p");
+        $req->bindValue(':id_p', $this->id_p, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function datagrid()

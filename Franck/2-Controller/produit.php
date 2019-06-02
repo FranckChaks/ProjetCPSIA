@@ -1,16 +1,38 @@
 <?php
 
+    $u = new utilisateur();
+    $user = $u->getNomPrenom();
+    $id_user_selected = $u->getIDSelectedUser();
+
+    $p = new panier();
+    $p->id_u = $id_user_selected;
+    $total = $p->getTotalPanier();
 
     if (isset($_POST["add"]))       //Ajout au panier
     {
         $pa = new panier;
         $pa->id_p = $_POST["add"];
-        $pa->id_u = $_POST["id_u"];
-        $pa->quantite = $_POST['quantite'];
+        $pa->id_u = $id_user_selected;
+        $pa->quantite = (int)$_POST['quantite'];
+
+        //TODO : Mettre stock a la place de quantite sinon ça n'en ajoute qu'un comme $i est réintialisé à chaque produit
+
         $pa->ajouter();
 
         header("refresh:0");
         exit;
+    }
+
+    if(isset($_GET['changeUser'])){
+        $u->id_u = (int)$_POST['id_u'];
+        $u->updateSelected();
+        header('Location: ' . $_SERVER['HTTP_REFERER']);
+        exit;
+    }
+
+    if(isset($_GET['action']) && $_GET['action'] == 1){
+        $p = new produit;
+        $liste_p = $p->getProduit();
     }
 
     if (isset($_GET["action"]) && $_GET["action"] == 2)     //Modifier
@@ -34,16 +56,14 @@
             $p->Modifier();
         }
     }
+
     if (isset($_GET["action"]) && $_GET["action"] == 3)     //Supprimer
     {
-        $e = new eleve();
-        $e->id = $_GET['id'];
-        if ($_POST['submit'] == 1) {
-        $e->charger($e->id);
-        $e->supprimer();
-    }
-    if ($_POST['submit'] == 2)
-        header("location: index.php");
+        $p = new produit();
+        $p->id_p = $_GET['id'];
+        $p->supprimer();
+        header("location:".URL_HOME."/produit?action=1");
+        exit;
     }
 
     if(isset($_GET['id'])){                     //Affichage des produits selon la categorie
@@ -57,14 +77,42 @@
         $nom_c = $c->nom_c;
     }
 
-//$c = new categorie();
-//$c->getCategories();
+    if(isset($_POST['addProduct'])){
+        $p = new produit;
+        $p->libelle_p = $_POST['libelle_p'];
+        $p->description_p = $_POST['description_p'];
+        $p->prix_p = $_POST['prix_p'];
+        $p->id_c = $_POST['id_c'];
+//        $p->img_p = $_POST['img_p'];
 
-$u = new utilisateur();
-$user = $u->getNomPrenom();
-$id_user_selected = $u->getIDSelectedUser();
+//        Ajouter la catégorie du produit /!\
+       var_dump($_POST);
 
-//$alluser = $u->getOtherUsers();
+
+        if(isset($_FILES['img_p']))
+        {
+            $dossier = 'css/';
+            $fichier = basename($_FILES['img_p']['name']);
+            if(move_uploaded_file($_FILES['img_p']['tmp_name'], $dossier . $fichier))
+            {
+                $p->img_p = $fichier;
+//                var_dump($p);
+//                die();
+                $p->ajouter();
+                header("refresh:0");
+            }
+            else
+            {
+                echo '<div class="alert alert-danger" role="alert">
+                          Image non chargée.
+                      </div>';
+                die();
+            }
+        }
+
+
+    }
+
 
 Head("Produit");
 require "4-View/produitView.php";

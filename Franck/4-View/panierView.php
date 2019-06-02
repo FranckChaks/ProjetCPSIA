@@ -1,23 +1,25 @@
 <div class="container">
-    <form action="" method="post">
-        <section class="row">
-            <div class="col-12">
-                <div class="float-right mt-2 mr-2" style="color: black">
-                    <i class="fa fa-shopping-basket"></i> Panier de
-                    <select name="id_u">
-                        <?php foreach (utilisateur::getUsers() as $k=>$v){ ?>
-                            <option value="<?=$v['id_u'];?>"><?=$v['prenom']." ".$v['nom'];?></option>
-                        <?php } ?>
-                    </select> Voir
-                    <b><?=$total;?>€</b>
-                </div>
-            </div>
-        </section>
-    </form>
+<!--    <form action="" method="post">-->
+<!--        <section class="row">-->
+<!--            <div class="col-12">-->
+<!--                <div class="float-right mt-2 mr-2" style="color: black">-->
+<!--                    <i class="fa fa-shopping-basket"></i> Panier de-->
+<!--                    <select name="id_u" id="select-user">-->
+<!--                        <option value="--><?//=$id_user_selected;?><!--">--><?//=$user;?><!--</option>-->
+<!--                        --><?php //foreach (utilisateur::getOtherUsers() as $k=>$v){ ?>
+<!--                            <option value="--><?//=$v['id_u'];?><!--">--><?//=$v['prenom']." ".$v['nom'];?><!--</option>-->
+<!--                        --><?php //} ?>
+<!--                    </select>-->
+<!--                    <b>0,00€</b>-->
+<!--                    <a href="--><?//=URL_HOME;?><!--/panier/--><?//=$id_user_selected;?><!--">Voir</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--    </form>-->
 
     <section class="row">
-        <div class="col-12 mb-5">
-           <h2>X Articles dans le panier</h2>
+        <div class="col-12 mb-5 mt-3">
+           <h2>Articles dans le panier</h2>
         </div>
         <hr>
         <div class="col-12 table-responsive">
@@ -38,7 +40,7 @@
                     <td><?=$v['prix_p'];?></td>
                     <td><input type="number" value="<?=$v['quantite'];?>" style="width: 50px"></td>
                     <td><?=$v['quantite']*$v['prix_p'];?></td>
-                    <td><i class="fa fa-trash" title="Supprimer"></i> </td>
+                    <td><a href="<?=URL_HOME;?>/panier?action=3&id1=<?=$v['id_u'];?>&id2=<?=$v['id_p'];?>"><i class="fa fa-trash" title="Supprimer"></i></a> </td>
                 </tr>
             <?php } ?>
                 </tbody>
