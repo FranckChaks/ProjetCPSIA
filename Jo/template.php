@@ -4,16 +4,16 @@
     <header>
         <ul class="nav">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Active</a>
+                <a class="nav-link active" href="index.php">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="index.php?p=categorie">Catégorie</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="index.php?p=produit">Produit</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                <a class="nav-link" href="#">Autre</a>
             </li>
             <li>
                 <a href="index.php?action=deconnexion"><button style="text-align: center" class="badge btn-danger">Déconnexion</button></a>

@@ -14,6 +14,7 @@ include(__DIR__."/../3-Model/bdd.php");
 include (__DIR__."/code-affichage.php");
 include (__DIR__."/../1-Class/connexion.class.php");
 include (__DIR__."/../1-Class/produit.class.php");
+include (__DIR__."/../1-Class/categorie.class.php");
 
 
 $c = new connexion();
