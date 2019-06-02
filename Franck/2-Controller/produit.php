@@ -83,10 +83,6 @@
         $p->description_p = $_POST['description_p'];
         $p->prix_p = $_POST['prix_p'];
         $p->id_c = $_POST['id_c'];
-//        $p->img_p = $_POST['img_p'];
-
-//        Ajouter la catégorie du produit /!\
-       var_dump($_POST);
 
 
         if(isset($_FILES['img_p']))
@@ -96,8 +92,6 @@
             if(move_uploaded_file($_FILES['img_p']['tmp_name'], $dossier . $fichier))
             {
                 $p->img_p = $fichier;
-//                var_dump($p);
-//                die();
                 $p->ajouter();
                 header("refresh:0");
             }
@@ -106,7 +100,6 @@
                 echo '<div class="alert alert-danger" role="alert">
                           Image non chargée.
                       </div>';
-                die();
             }
         }
 
