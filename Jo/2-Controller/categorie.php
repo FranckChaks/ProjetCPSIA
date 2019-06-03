@@ -5,27 +5,34 @@
  * Date: 02/06/2019
  * Time: 17:11
  */
-
+Head("Categorie");
 if (isset($_GET['action']))
 {
     $cat = new categorie();
+
     if ($_GET['action'] == 1)
     {
         $cat->createForm();
-        $cat->create();
+        if  (isset($_POST['submit']))
+            $cat->create();
     }
-    if ($_GET['action'] == 2)
+    if ($_GET['action'] >= 2)
     {
         $cat->select();
-        //$cat->modifForm();
-        //$cat->modif();
+        if ($_GET['action'] == 2 && isset($_GET['cas']))
+        {
+            $cat->modifForm($_GET['cas']);
+            if (isset($_POST['submit'])) {
+                $cat->modif();
+                header("location:".URL_HOME."/index.php?p=categorie&action=2");
+            }
+        }
+        if ($_GET['action'] == 3 && isset($_GET['cas']))
+        {
+            $cat->suppr($_GET['cas']);
+            header("location:".URL_HOME."/index.php?p=categorie&action=3");
+        }
     }
-    if ($_GET['action'] == 3)
-
-        $cat->select();
-        $cat->supprForm();
-    }
-        
 }
 ?>
 

@@ -48,7 +48,7 @@ class categorie
 
         $ligne = $res->fetch(PDO::FETCH_ASSOC);
 
-        return $ligne;
+        $this->nom_c = $ligne['nom_c'];
     }
 
     public function select()
@@ -56,14 +56,32 @@ class categorie
         $res = self::getCategories();
 
         ?>
-        <select name="choix">
-        <?php
-        foreach ($res as $key => $v)
-        {
-            echo "<option value='".$v['id_c']."'>".$v['nom_c']."</option>";
-        }
-        ?>
-        </select>
+            <table>
+                <thead>
+                    <tr>
+                        <td>Nom categorie</td>
+                        <td>action</td>
+                    </tr>
+                </thead>
+            <?php
+            foreach ($res as $key => $v)
+            {
+                ?>
+                       <tr>
+                        <td>".$v['nom_c']."</td>
+                        <td>
+                            <a href='".URL_HOME."index.php?p=categorie&action=2&cas=".$v['id_c']."'>
+                                <button>Modifier</button>
+                            </a>
+                            <a href='".URL_HOME."index.php?p=categorie&action=3&cas=".$v['id_c']."'>
+                            <button>Supprimer</button>
+                            </a>
+                        </td>
+                      </tr>";
+            <?php
+            }
+            ?>
+            </table>
         <?php
     }
         // Creer catégorie
@@ -81,12 +99,9 @@ class categorie
 
     public function create()
     {
+        global $bdd;
 
         $nom = $_POST['nom_c'];
-        echo $nom;
-        $bdd = new PDO("mysql:host=".PARAM_hote.";port=".PARAM_port.";dbname="
-            .PARAM_nom_bdd.";charset=utf8", PARAM_utilisateur, PARAM_mdp);
-
         $bind = array();
         $bind['nom_c'] = $nom;
 
@@ -98,54 +113,43 @@ class categorie
     //modifier une categorie
     public function modifForm($id)
     {
-        $bdd = new PDO("mysql:host=".PARAM_hote.";port=".PARAM_port.";dbname="
-            .PARAM_nom_bdd.";charset=utf8", PARAM_utilisateur, PARAM_mdp);
-        
-        $bind = array();
-        $bind['id'] = $id;
-        
-        $req = $bdd->prepare("SELECT * FROM categorie WHERE id_c = :id");
-        $req->execute($bind);
-        
-        $res = $req->fetch(PDO::FETCH_ASSOC);
-        
-        
+        $this->getLaCategorie($id);
         ?>
             <div class="form-group">
-                <form action="post">
-                    <input type="text" class="form-control" value="<?php $res['nom_c'] ?>">
+                <form method="post">
+                    <input type="text" class="form-control" value="<?=$this->nom_c ?>" name="nom_c">
                     <button type="submit" name="submit">Modifier</button>
                 </form>        
             </div>
         <?php
-        modif();
     }
 
 
     public function modif()
     {
+        global $bdd;
         $nom = $_POST['nom_c'];
-
-        $bdd = new PDO("mysql:host=".PARAM_hote.";port=".PARAM_port.";dbname="
-            .PARAM_nom_bdd.";charset=utf8", PARAM_utilisateur, PARAM_mdp);
+        $id = $_GET['cas'];
 
         $bind = array();
         $bind['nom_c'] = $nom;
+        $bind['id'] = $id;
 
-        $req = "UPDATE categorie SET(nom_c = :nom_c)";
+        $req = "UPDATE categorie SET nom_c = :nom_c WHERE id_c = :id";
         $res = $bdd->prepare($req);
         $res->execute($bind);
     }
 
     // supprimer catégorie
-    public function supprForm($id)
+    public function suppr($id)
     {
-        $bdd = new PDO("mysql:host=".PARAM_hote.";port=".PARAM_port.";dbname="
-            .PARAM_nom_bdd.";charset=utf8", PARAM_utilisateur, PARAM_mdp);
-    }
+        global $bdd;
 
-    public function suppr()
-    {
-        
+        $bind = array();
+        $bind['id'] = $id;
+        $req = "DELETE FROM categorie WHERE id_c = :id";
+
+        $res = $bdd->prepare($req);
+        $res->execute($bind);
     }
 }

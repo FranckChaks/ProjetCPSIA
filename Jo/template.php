@@ -1,5 +1,4 @@
 <html>
-    <?php Head("Accueil");?>
     <body>
     <header>
         <ul class="nav">

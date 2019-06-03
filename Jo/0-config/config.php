@@ -15,6 +15,7 @@ include (__DIR__."/code-affichage.php");
 include (__DIR__."/../1-Class/connexion.class.php");
 include (__DIR__."/../1-Class/produit.class.php");
 include (__DIR__."/../1-Class/categorie.class.php");
+include (__DIR__."/../1-Class/commande.class.php");
 
 
 $c = new connexion();

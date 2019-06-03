@@ -36,8 +36,6 @@ if (isset($_GET["action"]) && $_GET["action"] == 3)
         header("location: index.php");
 }
 ?>
-<!doctype html>
-<html lang="fr">
     <?php Head("Accueil"); ?>
   <body>
     <section class="container">
