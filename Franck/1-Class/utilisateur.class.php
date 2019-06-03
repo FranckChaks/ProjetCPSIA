@@ -26,7 +26,7 @@ class utilisateur
 
     public function getUser(){
         global $bdd;
-        $req = $bdd->prepare("SELECT * FROM user WHERE id_u = ".$this->id);
+        $req = $bdd->prepare("SELECT * FROM user WHERE id_u = ".$this->id_u);
         $req->execute();
         $ligne = $req->fetch(PDO::FETCH_ASSOC);
 
@@ -38,6 +38,8 @@ class utilisateur
         $this->numero = $ligne['numero'];
         $this->tel = $ligne['tel'];
         $this->email = $ligne['email'];
+        $this->login = $ligne['login'];
+        $this->mdp = $ligne['mdp'];
         $this->lvl = $ligne['lvl'];
         $this->selected = $ligne['selected'];
 
@@ -83,6 +85,66 @@ class utilisateur
         $req = $bdd->prepare("SELECT * FROM user WHERE selected = 0 ORDER BY nom");
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateSelected(){
+        global $bdd;
+
+        $first_req = $bdd->prepare("UPDATE user SET selected = 0 WHERE selected = 1");
+        $first_req->execute();
+        $first_req->fetch(PDO::FETCH_ASSOC);
+
+        $req = $bdd->prepare("UPDATE user SET selected = 1 WHERE id_u = ".$this->id_u);
+        $req->bindValue('id_u', $this->id_u, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public static function getAllUser(){
+        global $bdd;
+        $req = $bdd->prepare("SELECT * FROM user ORDER BY nom, prenom");
+        $req->execute();
+        return $req->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function ajouter(){
+        global $bdd;
+        $req = $bdd->prepare("INSERT INTO user (login, mdp, nom, prenom, ville, rue, numero, tel, email) VALUES (:login, :mdp, :nom, :prenom, :ville, :rue, :numero, :tel, :email)");
+        $req->bindValue(':login', $this->login, PDO::PARAM_STR);
+        $req->bindValue(':mdp', $this->mdp, PDO::PARAM_STR);
+        $req->bindValue(':nom', $this->nom, PDO::PARAM_STR);
+        $req->bindValue(':prenom', $this->prenom, PDO::PARAM_STR);
+        $req->bindValue(':ville', $this->ville, PDO::PARAM_STR);
+        $req->bindValue(':rue', $this->rue, PDO::PARAM_STR);
+        $req->bindValue(':numero', $this->numero, PDO::PARAM_STR);
+        $req->bindValue(':tel', $this->tel, PDO::PARAM_STR);
+        $req->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function modifier(){
+        global $bdd;
+        $req = $bdd->prepare("UPDATE user set login = :login, mdp = :mdp, nom = :nom, prenom = :prenom, ville = :ville, rue = :rue, numero = :numero, tel = :tel, email = :email WHERE id_u = ".$this->id_u);
+        $req->bindValue(':login', $this->login, PDO::PARAM_STR);
+        $req->bindValue(':mdp', $this->mdp, PDO::PARAM_STR);
+        $req->bindValue(':nom', $this->nom, PDO::PARAM_STR);
+        $req->bindValue(':prenom', $this->prenom, PDO::PARAM_STR);
+        $req->bindValue(':ville', $this->ville, PDO::PARAM_STR);
+        $req->bindValue(':rue', $this->rue, PDO::PARAM_STR);
+        $req->bindValue(':numero', $this->numero, PDO::PARAM_STR);
+        $req->bindValue(':tel', $this->tel, PDO::PARAM_STR);
+        $req->bindValue(':email', $this->email, PDO::PARAM_STR);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function supprimer(){
+        global $bdd;
+        $req = $bdd->prepare("DELETE FROM user WHERE id_u = :id_u");
+        $req->bindValue(':id_u', $this->id_u, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
     }
 
 }

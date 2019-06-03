@@ -49,4 +49,13 @@ class panier
         }
         return $total;
     }
+
+    public function suppFromPanier(){
+        global $bdd;
+        $req = $bdd->prepare("DELETE FROM panier WHERE id_p = :id_p AND id_u = :id_u");
+        $req->bindValue(':id_p', $this->id_p, PDO::PARAM_INT);
+        $req->bindValue(':id_u', $this->id_u, PDO::PARAM_INT);
+        $req->execute();
+        return $req->fetch(PDO::FETCH_ASSOC);
+    }
 }
