@@ -10,7 +10,6 @@ $u = new utilisateur();
 $user = $u->getNomPrenom();
 $id_user_selected = $u->getIDSelectedUser();
 
-
 if(isset($_GET['action']) && $_GET['action'] == 3){
     $p = new panier();
     $p->id_u = (int)$_GET['id1'];

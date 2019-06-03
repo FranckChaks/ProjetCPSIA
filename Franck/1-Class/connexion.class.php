@@ -9,7 +9,7 @@ class connexion
     {
         $this->deconnexion();
         $this->nom = "connecte";
-        $this->pageConnexion = "2-Controller/connexion.php";
+        $this->pageConnexion = URL_HOME."/connexion";
     }
 
     public function verifConnexion()
@@ -18,7 +18,7 @@ class connexion
         {
             $page = $this->get_page();
             if ($page != $this->pageConnexion)
-                header("location:" .URL_HOME.$this->pageConnexion);
+                header("location:".$this->pageConnexion);
         }
     }
 
@@ -55,8 +55,7 @@ class connexion
             $_SESSION[$this->nom] = true;
             $_SESSION['login'] = $login;
             $_SESSION['id'] = $ligne['id_u'];
-            var_dump($_SESSION);
-            header("location:../index.php");
+            header("location:".URL_HOME."/accueil");
         }
     }
 

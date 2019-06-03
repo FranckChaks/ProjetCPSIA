@@ -102,7 +102,7 @@ class utilisateur
 
     public static function getAllUser(){
         global $bdd;
-        $req = $bdd->prepare("SELECT * FROM user ORDER BY nom, prenom");
+        $req = $bdd->prepare("SELECT * FROM user WHERE lvl < 2 ORDER BY nom, prenom");
         $req->execute();
         return $req->fetchAll(PDO::FETCH_ASSOC);
     }

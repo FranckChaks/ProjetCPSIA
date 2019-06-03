@@ -72,7 +72,7 @@ class produit
     {
         global $bdd;
 
-        $req = $bdd->prepare("SELECT * FROM produit ORDER BY libelle_p");
+        $req = $bdd->prepare("SELECT * FROM produit p INNER JOIN categorie c ON c.id_c = p.id_c INNER JOIN stock s ON p.id_p = s.id_p ORDER BY p.libelle_p");
         $req->execute();
         $ligne = $req->fetchAll(PDO::FETCH_ASSOC);
         return $ligne;

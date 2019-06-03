@@ -8,6 +8,8 @@
     $p->id_u = $id_user_selected;
     $total = $p->getTotalPanier();
 
+
+
     if (isset($_POST["add"]))       //Ajout au panier
     {
         $pa = new panier;
@@ -15,10 +17,13 @@
         $pa->id_u = $id_user_selected;
         $pa->quantite = (int)$_POST['quantite'];
 
+        $s = new stock();
+//        $s->id_p = $pa->id_p;
+
         //TODO : Mettre stock a la place de quantite sinon ça n'en ajoute qu'un comme $i est réintialisé à chaque produit
 
         $pa->ajouter();
-
+        $s->updateStock($pa->id_p);
         header("refresh:0");
         exit;
     }
@@ -48,12 +53,22 @@
             $p->libelle_p = $_POST['libelle_p'];
             $p->prix_p = $_POST['prix_p'];
 
-            if(!empty($_POST['img_p'])) $p->img_p = $_POST['img_p'];
-            else $p->img_p = $img_p;
-
-            $id_c = $p->id_c;
-
-            $p->Modifier();
+            if(isset($_FILES['img_p']) && $_FILES['img_p']['name'] != $img_p) {
+                $dossier = 'css/';
+                $fichier = basename($_FILES['img_p']['name']);
+                if (move_uploaded_file($_FILES['img_p']['tmp_name'], $dossier . $fichier)) {
+                        $p->img_p = $fichier;
+                        $id_c = $p->id_c;
+                        $p->modifier();
+                        $p->charger();
+                        header("refresh:0");
+                } else {
+                        $id_c = $p->id_c;
+                        $p->modifier();
+                        $p->charger();
+                        header("refresh:0");
+                }
+            }
         }
     }
 
@@ -68,6 +83,7 @@
 
     if(isset($_GET['id'])){                     //Affichage des produits selon la categorie
         $id = (int)$_GET['id'];
+
         $p = new produit;
         $produit = $p->getProduitByCategory($id);
 
@@ -93,6 +109,11 @@
             {
                 $p->img_p = $fichier;
                 $p->ajouter();
+
+                $s = new stock();
+                $s->id_p = $bdd->lastInsertId();
+                $s->quantite = (int)$_POST['stock'];
+                $s->ajouter();
                 header("refresh:0");
             }
             else
@@ -100,10 +121,9 @@
                 echo '<div class="alert alert-danger" role="alert">
                           Image non chargée.
                       </div>';
+
             }
         }
-
-
     }
 
 

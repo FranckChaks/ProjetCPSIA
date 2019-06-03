@@ -7,13 +7,31 @@ body{
     text-shadow: 1px 1px 2px black;
 }
 
+@font-face {
+    font-family: "Fabiana";
+    src: url("../fonts/Fabiana.ttf") format("truetype");
+}
+
 header{
     width:100%;
     height: 100px;
-    padding-top: 30px;
+    padding-top: 10px;
     background: black;
     color: white;
+    font-size: 25px;
     text-align: center;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.font-text{
+    font-family: Fabiana;
+    /*color: black;*/
+}
+
+.font-text:hover{
+    text-decoration: none;
+    color: deepskyblue;
+    text-shadow: 1px 1px 2px black;
 }
 
 nav ul li{
@@ -22,13 +40,45 @@ nav ul li{
     width: 15%;
 }
 
-.bloc-category{
-    /*border: 1px solid black;*/
-    width: 100%;
-    height: 100px;
-    border-radius: 5px;
-    padding-top: 25px;
+.front{
+    background:url('front.jpg');
+    padding-bottom: 60px;
+    color:white;
+}
+
+.accueil-bloc{
+    height: 200px;
+    background: rgba(29, 81, 139, 0.75);
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    margin-top: 20px;
+    /*border-radius: 10px;*/
+    text-shadow: 1px 1px 2px black;
+    width: 85%;
+    color:white !important;
+    padding-top: 70px;
+    font-family: Fabiana;
+    transition: 0.5s;
+}
+
+.accueil-bloc:hover{
+    background: rgb(29, 81, 139);
+}
+
+.bloc-category{
+    /*border: 2px solid black;*/
+    background: white;
+    width: 100%;
+    height: 70px;
+    border-radius: 5px;
+    padding-top: 12px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: 0.5s;
+}
+
+.bloc-category:hover{
+    /*border: 3px solid white;*/
+    color: white;
+    background: #964b14;
 }
 
 section div a{
@@ -56,12 +106,42 @@ section div a:hover{
 .bloc-category2{
     width: 100%;
     height: 50px;
-    border-radius: 5px;
+    /*border-radius: 5px;*/
+    color:white;
+    background: black;
     padding-top: 10px;
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    transition: 0.3s;
+    margin-bottom: 5px;
+}
+
+.bloc-category2:hover{
+    background: white;
+    color: black;
+    border: 2px solid black;
 }
 
 .add-product{
     background: none;
     border: none;
+}
+
+.bloc-product{
+    background: rgba(192, 192, 192, 0.52);
+    padding-top: 10px;
+    padding-bottom: 5px;
+    /*border:1px solid rgba(128, 128, 128, 0.4);*/
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.bloc-product:hover {
+    box-shadow: 0 7px 14px rgba(0,0,0,0.25), 0 5px 5px rgba(0,0,0,0.22);
+}
+
+.modify:hover{
+    font-weight: bold;
+}
+
+.title-gestion{
+    font-family: Fabiana;
 }

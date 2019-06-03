@@ -1,14 +1,17 @@
 <div class="container">
     <section class="row">
         <div class="col-12 mt-3">
-            <h2>Gestion des utilisateurs</h2>
+            <h2 class="title-gestion">Gestion des clients</h2>
+            <hr>
         </div>
     </section>
 
     <?php if(!isset($_GET['action'])){ ?>
     <section class="row">
-        <a href="<?=URL_HOME;?>/utilisateur?action=1"><button class="btn btn-success">Ajouter</button> </a>
-        <table class="table table-bordered">
+        <div class="col-12">
+            <a href="<?=URL_HOME;?>/utilisateur?action=1"><button class="btn btn-success float-right mb-3"><i class="fa fa-plus"></i> Ajouter</button> </a>
+        </div>
+        <table class="table table-bordered" style="background: white">
             <thead>
             <tr>
                 <th>Client</th>
@@ -17,7 +20,8 @@
                 <th>Adresse</th>
                 <th>Tel</th>
                 <th>Panier</th>
-                <th> </th>
+                <th>Commandes</th>
+                <th>Action</th>
             </tr>
             </thead>
             <tbody>
@@ -29,9 +33,10 @@
                     <td><?=$v['numero']." ".$v['rue'].", ".$v['ville'];?></td>
                     <td><?=$v['tel'];?></td>
                     <td><a href="<?=URL_HOME;?>/panier/<?=$v['id_u'];?>">Voir le panier</a> </td>
+                    <td><a href="<?=URL_HOME;?>/commande/<?=$v['id_u'];?>">Voir les commandes</a> </td>
                     <td>
-                        <a href="<?=URL_HOME;?>/utilisateur?action=3&id=<?=$v['id_u'];?>"><button class="btn btn-danger float-right ml-3">Supprimer</button></a>
-                        <a href="<?=URL_HOME;?>/utilisateur?action=2&id=<?=$v['id_u'];?>"> <button class="btn btn-warning float-right">Modifier</button></a>
+                        <a href="<?=URL_HOME;?>/utilisateur?action=3&id=<?=$v['id_u'];?>"><button class="btn btn-danger float-right ml-3"><i class="fa fa-trash"></i> Supprimer</button></a>
+                        <a href="<?=URL_HOME;?>/utilisateur?action=2&id=<?=$v['id_u'];?>"> <button class="btn btn-warning float-right"><i class="fa fa-edit"></i> Modifier</button></a>
                     </td>
                 </tr>
             <?php } ?>
@@ -84,7 +89,7 @@
                         <input type="text" class="form-control" name="mdp">
                     </div>
                     <div class="form-group col-8">
-                       <button class="btn btn-success" type="submit" name="submit">Ajouter</button>
+                       <button class="btn btn-success" type="submit" name="submit"><i class="fa fa-plus"></i> Ajouter</button>
                     </div>
                 </div>
             </section>

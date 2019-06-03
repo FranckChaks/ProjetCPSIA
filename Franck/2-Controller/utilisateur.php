@@ -61,5 +61,5 @@
         $u->supprimer();
         header("location:".URL_HOME."/utilisateur");
     }
-
+    Head("Client");
     require "4-View/utilisateurView.php";
