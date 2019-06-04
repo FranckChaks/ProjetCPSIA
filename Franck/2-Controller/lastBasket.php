@@ -26,7 +26,7 @@ if (isset($_GET['opt'])) {
                 ?>
                 <tr>
                     <td>
-                        <?= $v['nom_p']; ?>
+                        <?= $v['libelle_p']; ?>
                     </td>
                     <td>
                         <?= $v['prix_p']; ?>

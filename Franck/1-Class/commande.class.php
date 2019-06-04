@@ -43,7 +43,7 @@ class commande
     {
         global $bdd;
 
-        $req2 = "SELECT * FROM produit WHERE id_p IN (SELECT p.id_p FROM panier p INNER JOIN associer a ON p.id_p = a.id_panier WHERE a.id_comm = :id)";
+        $req2 = "SELECT * FROM produit where id_p in (SELECT p.id_p from panier p inner join associer a on a.id_panier = p.id_pa where a.id_comm = :id)";
 
         $bind = array();
         $bind['id'] = $id;

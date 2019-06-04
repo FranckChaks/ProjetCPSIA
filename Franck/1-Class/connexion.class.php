@@ -35,8 +35,8 @@ class connexion
     {
 
         $login = $_POST['login'];
-//        $mdp = md5($_POST['mdp']);
-        $mdp = sha1($_POST['mdp']);
+        $mdp = md5($_POST['mdp']);
+        //$mdp = sha1($_POST['mdp']);
 
         global $bdd;
 
