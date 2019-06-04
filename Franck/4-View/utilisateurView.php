@@ -33,7 +33,7 @@
                     <td><?=$v['numero']." ".$v['rue'].", ".$v['ville'];?></td>
                     <td><?=$v['tel'];?></td>
                     <td><a href="<?=URL_HOME;?>/panier/<?=$v['id_u'];?>">Voir le panier</a> </td>
-                    <td><a href="<?=URL_HOME;?>/commande/<?=$v['id_u'];?>">Voir les commandes</a> </td>
+                    <td><a href="<?=URL_HOME;?>/commande?opt=<?=$v['id_u'];?>">Voir les commandes</a> </td>
                     <td>
                         <a href="<?=URL_HOME;?>/utilisateur?action=3&id=<?=$v['id_u'];?>"><button class="btn btn-danger float-right ml-3"><i class="fa fa-trash"></i> Supprimer</button></a>
                         <a href="<?=URL_HOME;?>/utilisateur?action=2&id=<?=$v['id_u'];?>"> <button class="btn btn-warning float-right"><i class="fa fa-edit"></i> Modifier</button></a>

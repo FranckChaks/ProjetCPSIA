@@ -62,13 +62,23 @@ class commande
         $req->execute();
         $req->fetch(PDO::FETCH_ASSOC);
 
-//        $id_c = $bdd->lastInsertId();
+        $id_u = $this->id_u;
+        $id_c = $bdd->lastInsertId();
 
-//        foreach ()
-//        $req1 = $bdd->prepare("INSERT INTO associer(id_panier, id_comm) VALUE (:id_panier, :id_comm)");
-//        $req1->bindValue(':id_panier', $id_panier, PDO::PARAM_INT);
-//        $req1->bindValue(':id_comm', $id_c, PDO::PARAM_INT);
-//        $req1->execute();
-//        $req1->fetch(PDO::FETCH_ASSOC);
+        $p = new panier();
+        $p->id_u = $id_u;
+        $panier = $p->getPanier();
+
+        foreach($panier as $k=>$v){
+            $req1 = $bdd->prepare("INSERT INTO associer(id_panier, id_comm) VALUE (:id_panier, :id_comm)");
+            $req1->bindValue(':id_panier', $v['id_pa'], PDO::PARAM_INT);
+            $req1->bindValue(':id_comm', $id_c, PDO::PARAM_INT);
+            $req1->execute();
+            $req1->fetch(PDO::FETCH_ASSOC);
+
+//            $p->id_pa = $v['id_pa'];
+//            $p->supprPanier();
+        }
+//        header("location:".URL_HOME."/commande/".$id_u);
     }
 }

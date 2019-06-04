@@ -40,8 +40,7 @@
 
     <section class="row mb-3">
         <div class="col-12">
-            <button class="btn btn-warning">Continuer les achats</button>
-            <button class="btn btn-primary float-right">Valider le panier</button>
+            <a href="<?=URL_HOME;?>/commande?add=<?=$p->id_u;?>"><button class="btn btn-primary float-right">Valider le panier</button></a>
         </div>
     </section>
 

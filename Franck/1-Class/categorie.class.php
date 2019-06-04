@@ -134,7 +134,6 @@ class categorie
         <?php
     }
 
-
     public function modif()
     {
         global $bdd;
