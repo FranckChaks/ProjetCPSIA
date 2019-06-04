@@ -76,8 +76,8 @@ class commande
             $req1->execute();
             $req1->fetch(PDO::FETCH_ASSOC);
 
-//            $p->id_pa = $v['id_pa'];
-//            $p->supprPanier();
+            $p->id_pa = $v['id_pa'];
+            $p->supprPanier();
         }
 //        header("location:".URL_HOME."/commande/".$id_u);
     }

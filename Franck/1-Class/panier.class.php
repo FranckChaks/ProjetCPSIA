@@ -12,6 +12,7 @@ class panier
         $this->quantite = 0;
         $this->id_p = 0;
         $this->id_u = 0;
+        $this->valid = 0;
     }
 
     public function ajouter(){
@@ -29,6 +30,7 @@ class panier
         $req = $bdd->prepare("SELECT * FROM panier pa 
                                         INNER JOIN produit p ON pa.id_p = p.id_p
                                         INNER JOIN user u ON u.id_u = pa.id_u 
+                                        AND pa.valid = 0
                                         AND pa.id_u =".$this->id_u);
         $req->bindValue('id_u', $this->id_u, PDO::PARAM_INT);
         $req->execute();
@@ -40,6 +42,7 @@ class panier
         $req = $bdd->prepare("SELECT * FROM panier pa 
                                         INNER JOIN produit p ON pa.id_p = p.id_p
                                         INNER JOIN user u ON u.id_u = pa.id_u 
+                                        AND valid = 0
                                         AND pa.id_u =".$this->id_u);
         $req->bindValue('id_u', $this->id_u, PDO::PARAM_INT);
         $req->execute();
@@ -62,7 +65,7 @@ class panier
 
     public function supprPanier(){
         global $bdd;
-        $req = $bdd->prepare("DELETE FROM panier WHERE id_pa = :id_pa");
+        $req = $bdd->prepare("UPDATE panier SET valid = 1 WHERE id_pa = :id_pa");
         $req->bindValue(':id_pa', $this->id_pa, PDO::PARAM_INT);
         $req->execute();
         return $req->fetch(PDO::FETCH_ASSOC);
