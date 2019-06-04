@@ -114,7 +114,7 @@
                 $s->id_p = $bdd->lastInsertId();
                 $s->quantite = (int)$_POST['stock'];
                 $s->ajouter();
-                header("refresh:0");
+                header("location:".URL_HOME."/produit?action=1");
             }
             else
             {

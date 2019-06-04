@@ -46,7 +46,7 @@
                     <?php foreach ($produit as $k=>$v){
                         $s = new stock();
                         $s->getStock($v['id_p']);  ?>
-                    <div class="col-md-3 col-sm-6 text-center">
+                    <div class="col-md-3 col-sm-6 text-center mb-4">
                         <div class="bloc-product">
                             <img src="<?=URL_HOME;?>/css/<?=$v['img_p'];?>" height="200px" width="80%"><br>
                             <span>

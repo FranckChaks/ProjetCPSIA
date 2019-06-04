@@ -31,7 +31,8 @@
         </div>
     </section>
 
-    <section class="row text-center mt-5">
+    <section class="row text-center mt-3 mb-4">
+        <h2 class="font-text col-12 text-left" style="text-decoration: none">Sélectionnez une catégorie pour commencer les achats</h2>
         <?php
         foreach(categorie::getCategories() as $k=>$v){ ?>
             <div class="col-md-3 col-sm-12">
